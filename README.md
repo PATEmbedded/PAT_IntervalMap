@@ -12,9 +12,15 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 
 1. Clone the repository:
 
+<<<<<<< HEAD
     ```bash
     git clone https://github.com/PAT-IOT/PAT_IntervalMap.git
     ```
+=======
+   ```bash
+   git clone https://github.com/PAT-IOT/PAT_IntervalMap.git
+   ```
+>>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
 
 2. Copy the `PAT_IntervalMap` directory to your Arduino `libraries` folder.
 
@@ -22,6 +28,7 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 
 ## expected Serial Output:
 
+<<<<<<< HEAD
 - **Heart Rate**:  55 bpm - Status: Bradycardia Alert.
 - **SpO2 Level**: 92% - Status: Low Oxygen Alert.
 - **ALERT**: Monitor patient closely; consider intervention.
@@ -30,6 +37,16 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 - **Blood Pressure**: 160/100 mmHg - Status: Critical Hypertension.
 - **EMERGENCY**: Immediate medical intervention required!.
 - **Heart Rate**:  72 bpm - Status: Normal Heart Rate.
+=======
+- **Heart Rate**: 55 bpm - Status: Bradycardia Alert.
+- **SpO2 Level**: 92% - Status: Low Oxygen Alert.
+- **ALERT**: Monitor patient closely; consider intervention.
+- **Heart Rate**: 150 bpm - Status: Critical Tachycardia.
+- **SpO2 Level**: 88% - Status: Critical Hypoxia Alert.
+- **Blood Pressure**: 160/100 mmHg - Status: Critical Hypertension.
+- **EMERGENCY**: Immediate medical intervention required!.
+- **Heart Rate**: 72 bpm - Status: Normal Heart Rate.
+>>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
 - **SpO2 Level**: 89% - Status: Critical Hypoxia Alert.
 - **Blood Pressure**: 140/90 mmHg - Status: Critical Hypertension.
 - **EMERGENCY**: Immediate medical intervention required!.
@@ -128,3 +145,117 @@ void loop()
 {
     // Real-time monitoring would be placed here for continuous updates
 }
+<<<<<<< HEAD
+=======
+```
+
+# 🕒 WeeklyInterval & DailyInterval Library
+
+The **WeeklyInterval** and **DailyInterval** libraries provide a flexible and modular scheduling system embedded systems.  
+They allow developers to define, manage, and query **time-based tasks** across days and weeks using simple APIs, supporting multiple data types and complex schedules.
+
+---
+
+## 📦 Features
+
+- Manage multiple **tasks per day** with automatic handling of overlaps
+- Query the **current active task** or value based on RTC time
+- Supports **different data types**: `bool`, `int`, `float`, `String` via templates
+- JSON export support for web dashboards or logging
+- Lightweight, memory-efficient, and easy to integrate
+
+---
+
+## 🧠 Example Use Case
+
+Smart home automation:
+
+- Lights scheduled ON/OFF at specific hours
+- HVAC system with temperature setpoints for morning and evening
+- Fan speed control using integer levels
+- Text notifications for active tasks or reminders
+
+All of this can be handled **without hardcoding complex time logic**, using only these libraries.
+
+---
+
+## 💡 Example Code
+
+```cpp
+#include <Arduino.h>
+#include "RTClib.h"
+#include "PAT_WeeklyInterval.h"
+
+// -------------------
+// Create weekly schedules for multiple task types
+// -------------------
+WeeklyInterval<bool> lightsSchedule;   // true = ON, false = OFF
+WeeklyInterval<int> fanSchedule;       // Fan speed 0-5
+WeeklyInterval<float> heaterSchedule;  // Temperature setpoints
+WeeklyInterval<String> messageSchedule; // Notifications
+
+void setup() {
+  Serial.begin(115200);
+
+  // -------------------
+  // Boolean schedule: Lights ON/OFF
+  // -------------------
+  for (int day = 0; day <= 4; ++day) {
+    lightsSchedule.addTaskToDay(day, "18:00:00", "23:00:00", true);
+  }
+  lightsSchedule.addTaskToDay(5, "19:00:00", "23:59:59", true);
+  lightsSchedule.addTaskToDay(6, "00:00:00", "01:00:00", true);
+
+  // -------------------
+  // Integer schedule: Fan speed
+  // -------------------
+  for (int day = 0; day <= 6; ++day) {
+    fanSchedule.addTaskToDay(day, "08:00:00", "12:00:00", 3);
+    fanSchedule.addTaskToDay(day, "12:00:00", "16:00:00", 5);
+  }
+
+  // -------------------
+  // Float schedule: Heater temperature
+  // -------------------
+  for (int day = 0; day <= 6; ++day) {
+    heaterSchedule.addTaskToDay(day, "06:00:00", "09:00:00", 21.5f);
+    heaterSchedule.addTaskToDay(day, "18:00:00", "22:00:00", 23.0f);
+  }
+
+  // -------------------
+  // String schedule: Notifications
+  // -------------------
+  for (int day = 0; day <= 6; ++day) {
+    messageSchedule.addTaskToDay(day, "18:00:00", "23:00:00", "Lights are ON, enjoy!");
+  }
+
+  // Print all schedules for debugging
+  lightsSchedule.printdays();
+  fanSchedule.printdays();
+  heaterSchedule.printdays();
+  messageSchedule.printdays();
+}
+
+void loop() {
+  DateTime now = DateTime(F(__DATE__), F(__TIME__));
+
+  bool lightState = lightsSchedule.getCurrentValue(now);
+  int fanSpeed = fanSchedule.getCurrentValue(now);
+  float heaterTemp = heaterSchedule.getCurrentValue(now);
+  String notification = messageSchedule.getCurrentValue(now);
+
+  Serial.print("Now: ");
+  Serial.print(now.timestamp(DateTime::TIMESTAMP_TIME));
+  Serial.print(" | Light: ");
+  Serial.print(lightState ? "ON" : "OFF");
+  Serial.print(" | Fan Speed: ");
+  Serial.print(fanSpeed);
+  Serial.print(" | Heater Temp: ");
+  Serial.print(heaterTemp);
+  Serial.print("°C | Message: ");
+  Serial.println(notification);
+
+  delay(5000);
+}
+```
+>>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
