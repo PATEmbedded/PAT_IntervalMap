@@ -12,15 +12,14 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 
 1. Clone the repository:
 
-<<<<<<< HEAD
+
     ```bash
     git clone https://github.com/PAT-IOT/PAT_IntervalMap.git
     ```
-=======
+
    ```bash
    git clone https://github.com/PAT-IOT/PAT_IntervalMap.git
    ```
->>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
 
 2. Copy the `PAT_IntervalMap` directory to your Arduino `libraries` folder.
 
@@ -28,7 +27,7 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 
 ## expected Serial Output:
 
-<<<<<<< HEAD
+
 - **Heart Rate**:  55 bpm - Status: Bradycardia Alert.
 - **SpO2 Level**: 92% - Status: Low Oxygen Alert.
 - **ALERT**: Monitor patient closely; consider intervention.
@@ -37,7 +36,6 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 - **Blood Pressure**: 160/100 mmHg - Status: Critical Hypertension.
 - **EMERGENCY**: Immediate medical intervention required!.
 - **Heart Rate**:  72 bpm - Status: Normal Heart Rate.
-=======
 - **Heart Rate**: 55 bpm - Status: Bradycardia Alert.
 - **SpO2 Level**: 92% - Status: Low Oxygen Alert.
 - **ALERT**: Monitor patient closely; consider intervention.
@@ -46,7 +44,6 @@ The `PAT_IntervalMap` library provides a versatile and efficient way to manage i
 - **Blood Pressure**: 160/100 mmHg - Status: Critical Hypertension.
 - **EMERGENCY**: Immediate medical intervention required!.
 - **Heart Rate**: 72 bpm - Status: Normal Heart Rate.
->>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
 - **SpO2 Level**: 89% - Status: Critical Hypoxia Alert.
 - **Blood Pressure**: 140/90 mmHg - Status: Critical Hypertension.
 - **EMERGENCY**: Immediate medical intervention required!.
@@ -258,4 +255,3 @@ void loop() {
   delay(5000);
 }
 ```
->>>>>>> f44d9f5 (Initial commit: add PAT IntervalMap library and examples)
